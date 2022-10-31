@@ -1,4 +1,53 @@
-<h1>HeroesApp</h1>
-<hr>
+<mat-sidenav-container fullscreen>
 
-<router-outlet></router-outlet>
+    <mat-sidenav #sidenav mode="push">
+        
+        <mat-toolbar color="primary">
+            <span>Menú</span>
+            <span class="spacer"></span>
+            <button mat-icon-button 
+                    (click)="sidenav.toggle()" >
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <a href="./listado" 
+                    mat-list-item
+                    (click)="sidenav.toggle()">
+                <mat-icon>label</mat-icon>
+                <span>Listado de Héroes</span>
+            </a>
+            <a href="./agregar" 
+                    mat-list-item
+                    (click)="sidenav.toggle()">
+                <mat-icon>add</mat-icon>
+                <span>Añadir Héroes</span>
+            </a>
+            <a href="./buscar" 
+                    mat-list-item
+                    (click)="sidenav.toggle()">
+                <mat-icon>search</mat-icon>
+                <span>Listado de Héroes</span>
+            </a>
+        </mat-nav-list>
+
+    </mat-sidenav>
+    <!-- Body -->
+    
+    <mat-toolbar>
+        <button mat-icon-button 
+                (click)="sidenav.toggle()" >
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span class="spacer"></span>
+        <button mat-button>
+            Logout
+        </button>
+    </mat-toolbar>
+
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+    
+</mat-sidenav-container>
