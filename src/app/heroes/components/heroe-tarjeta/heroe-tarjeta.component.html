@@ -6,7 +6,7 @@
     </mat-card-header>
 
 
-    <img mat-card-image src="assets/heroes/{{heroe.id}}.jpg" alt="">
+    <img mat-card-image [src]="heroe | imagen" alt="">
 
     <mat-card-content>
         <h3>{{heroe.publisher}}</h3>
