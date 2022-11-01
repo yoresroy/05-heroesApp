@@ -8,6 +8,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatInputModule} from '@angular/material/input'
+
 
 
 
@@ -15,7 +19,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   exports:[
-    
+    MatAutocompleteModule,
     MatSidenavModule,
     MatToolbarModule,
     MatButtonModule,
@@ -24,6 +28,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatCardModule,
     MatProgressSpinnerModule,
     MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
   ]
 })
 export class MaterialModule { }
