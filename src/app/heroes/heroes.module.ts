@@ -12,6 +12,7 @@ import { MaterialModule } from '../material/material.module';
 
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 
 
 
@@ -21,7 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BuscarComponent,
     HeroeComponent,
     HomeComponent,
-    ListadoComponent
+    ListadoComponent,
+    HeroeTarjetaComponent
   ],
   imports: [
     CommonModule,
