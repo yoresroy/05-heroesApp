@@ -38,9 +38,11 @@ export class AgregarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
+    if ( !this.router.url.includes('editar') ) {
+      return;
+    }
     this.activatedRoute.params
-      .pipe(
+      .pipe(  
         switchMap( ({id}) => this.heroesService.getHeroe(id) )
       )
       .subscribe( heroe => this.heroe = heroe );
