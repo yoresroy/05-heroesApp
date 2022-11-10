@@ -58,7 +58,7 @@ export class AgregarComponent implements OnInit {
         .subscribe(heroe => console.log('Actualizando', heroe) )
     } else {
       this.heroesService.agregarHeroe(this.heroe).subscribe( resp => {
-        this.router.navigate(['/heroes', this.heroe.id])
+        this.router.navigate(['/heroes/editar', this.heroe.id])
       });
     }
     console.log(this.heroe);
