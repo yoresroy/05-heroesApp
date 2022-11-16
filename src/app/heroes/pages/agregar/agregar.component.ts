@@ -3,6 +3,9 @@ import { Publisher, Heroe } from '../../interfaces/heroes.interfaces';
 import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ConfirmarComponent } from '../../components/confirmar/confirmar.component';
 
 @Component({
   selector: 'app-agregar',
@@ -10,6 +13,7 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./agregar.component.css']
 })
 export class AgregarComponent implements OnInit {
+  [x: string]: any;
 
   publishers = [
     {
@@ -35,6 +39,8 @@ export class AgregarComponent implements OnInit {
     private heroesService: HeroesService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
+    private snackBar: MatSnackBar,
+    private matDialog: MatDialog,
     ) { }
 
   ngOnInit(): void {
@@ -57,19 +63,38 @@ export class AgregarComponent implements OnInit {
     if ( this.heroe.id ) {
       //Actualizar
       this.heroesService.actualizarHeroe(this.heroe)
-        .subscribe(heroe => console.log('Actualizando', heroe) )
+        .subscribe(heroe => this.moatrarSnackBar('Registro actualizado') )
     } else {
       this.heroesService.agregarHeroe(this.heroe).subscribe( resp => {
-        this.router.navigate(['/heroes/editar', resp.id])
+        this.router.navigate(['/heroes/editar', resp.id]);
+        this.moatrarSnackBar('Registro creado');
       });
     }
     console.log(this.heroe);
   }
 
   borrarHeroe(){
-    this.heroesService.borrarHeroe(this.heroe.id!)
-    .subscribe( resp => {
-      this.router.navigate(['/heroes']);
+    const dialog = this.matDialog.open( ConfirmarComponent, {
+        width: '250px',
+        data: this.heroe
+      });
+
+    dialog.afterClosed().subscribe(
+      (result) => {
+        if ( result ) {
+          this.heroesService.borrarHeroe(this.heroe.id!)
+          .subscribe( resp => {
+            this.router.navigate(['/heroes']);
+          });
+        }
+        console.log(result);
+      }
+    );
+  }
+
+  moatrarSnackBar(mensaje:string){
+    this.snackBar.open(mensaje,'Ok!', {
+      duration : 2500
     });
   }
 
